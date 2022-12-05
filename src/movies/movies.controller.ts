@@ -6,8 +6,11 @@ import {
   Param,
   Patch,
   Post,
+  Req,
+  Res,
 } from '@nestjs/common';
-import { CreateMovieDto } from './dto/movies.dto';
+import { CreateMovieDto } from './dto/create-movies.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 import { MoviesService } from './movies.service';
 
 @Controller('movies')
@@ -15,7 +18,8 @@ export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
 
   @Get()
-  getAll() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getAll(@Req() req, @Res() res) {
     return this.moviesService.getAll();
   }
   @Get(':id')
@@ -33,7 +37,7 @@ export class MoviesController {
     return this.moviesService.remove(id);
   }
   @Patch('/:id')
-  update(@Param('id') id: number, @Body() updateData) {
+  update(@Param('id') id: number, @Body() updateData: UpdateMovieDto) {
     return this.moviesService.update(id, updateData);
   }
 }
