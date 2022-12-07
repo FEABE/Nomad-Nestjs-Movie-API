@@ -24,5 +24,5 @@ describe('AppController (e2e)', () => {
 
   it('/movies (GET)', () => {
     return request(app.getHttpServer()).get('/movies').expect(200).expect([]);
-  }, 9999);
+  }, 9995);
 });
